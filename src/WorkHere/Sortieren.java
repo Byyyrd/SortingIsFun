@@ -3,16 +3,54 @@ package WorkHere;
 public class Sortieren {
 
     public static void main(String[] args) {
-        int[] array=new int[20];
-        Help.generateArray(array);              //Array mit Zufallszahlen füllen
-        array = new int[]{5,3,7,2,1,5,4};
-        Help.print(array);                      //Array in der Konsole ausgeben lassen
-        insertionSort(array);                   //Hier: InsertionSort wird auf dem Array ausgeführt
-        Help.print(array);
+        int[] array=new int[1000];
+        /*System.out.println("\n\nInsertionSort: ");
+        for (int i = 0; i < 10; i++) {
+            Help.generateArray(array);
+            insertionSort(array);
+        }*/
+        System.out.println("\n\nSelectionSort: ");
+        for (int i = 0; i < 10; i++) {
+            Help.generateArray(array);
+
+        }
+        for (int i = 0; i < 10; i++) {
+            array=new int[1000 + 1000 * i];
+            Help.generateArray(array);
+            System.out.println("LENGHT: " + (1000 + 1000 * i)  + "  ");
+            selectionSort(array);
+        }
+
+        /*System.out.println("\n\nBubbleSort: ");
+
+        for (int i = 0; i < 10; i++) {
+            Help.generateArray(array);
+            bubbleSort(array);
+        }*/
+
+        System.out.println();
+        for (int i = 0; i < 10; i++) {
+            array=new int[1000 + 1000 * i];
+            Help.generateArray(array);
+            for (int j = 0; j < 10; j++) {
+                Help.generateArray(array);
+                quickSort(array,0, array.length-1);
+            }
+            quickComp/=10;
+            quickSwaps/=10;
+            System.out.println("LENGHT: " + (1000 + 1000 * i)  + "  " + (quickComp + quickSwaps));
+            quickSwaps = 0;
+            quickComp = 0;
+        }
+
+
+
+
+
     }
 
     public static void insertionSort(int[] array){
-        //TODO: Implementiere den insertionSort-Algorithmus
+        //COMPLETE: Implementiere den insertionSort-Algorithmus
         int comparisons = 0;
         int swaps = 0;
         for (int i = 1; i < array.length; i++) {
@@ -24,18 +62,15 @@ public class Sortieren {
                 array[j-1] = help;
                 swaps++;
                 comparisons++;
-                comparisons++;
                 j--;
             }
-            if(j > 0)
-                comparisons++;
         }
 
         System.out.printf("Comparisons: %d , Swaps: %d \n",comparisons,swaps);
     }
 
     public static void selectionSort(int[] array){
-        //TODO: Implementiere den SelectionSort Algorithmus.
+        //COMPLETE: Implementiere den SelectionSort Algorithmus.
         int comparisons = 0;
         int swaps = 0;
         int min;
@@ -54,8 +89,9 @@ public class Sortieren {
         }
 
 
-        System.out.printf("Comparisons: %d , Swaps: %d \n",comparisons,swaps);
+        System.out.println(comparisons + swaps);
     }
+
 
     public static void bubbleSort(int[] array){
         //TODO: Implementiere den BubbleSort Algorithmus.
@@ -75,6 +111,37 @@ public class Sortieren {
         }
         System.out.printf("Comparisons: %d , Swaps: %d \n",comparisons,swaps);
     }
+    public static int quickComp = 0,quickSwaps = 0;
+    public static void quickSort(int[] array, int start, int end){
+        int i = start;
+        int j = end;
+        int mid = (i+j)/2;
+        int pivot = array[mid];
 
+        while(i <= j){
+            while(array[j] > pivot){
+                j--;
+                quickComp++;
+            }
+            while(array[i] < pivot){
+                i++;
+                quickComp++;
+            }
+            if(i <= j){
+                int help = array[j];
+                array[j] = array[i];
+                array[i] = help;
+                i++;
+                j--;
+                quickSwaps++;
+            }
+        }
+        if(i < end){
+            quickSort(array,i,end);
+        }
+        if(j > start){
+            quickSort(array,start,j);
+        }
+    }
 
 }
