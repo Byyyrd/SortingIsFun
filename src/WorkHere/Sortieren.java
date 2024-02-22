@@ -1,5 +1,7 @@
 package WorkHere;
 
+import java.util.Random;
+
 public class Sortieren {
 
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Sortieren {
             Help.generateArray(array);
             insertionSort(array);
         }*/
-        System.out.println("\n\nSelectionSort: ");
+        /*System.out.println("\n\nSelectionSort: ");
         for (int i = 0; i < 10; i++) {
             Help.generateArray(array);
 
@@ -19,7 +21,7 @@ public class Sortieren {
             Help.generateArray(array);
             System.out.println("LENGHT: " + (1000 + 1000 * i)  + "  ");
             selectionSort(array);
-        }
+        }*/
 
         /*System.out.println("\n\nBubbleSort: ");
 
@@ -42,11 +44,31 @@ public class Sortieren {
             quickSwaps = 0;
             quickComp = 0;
         }
+        /*for (int i = 0; i < 10; i++) {
+            array = new int[1000 + 1000 * i];
+            Help.generateArray(array);
+            int iterations = 0;
+            for (int j = 0; j < 10; j++) {
+                Help.generateArray(array);
+                iterations += linearSearch(array,(int)(Math.random() * 2049)-1024);
+            }
+            iterations /= 10;
+            System.out.println("LENGHT: " + (1000 + 1000 * i) + "  " + (iterations));
+        }*/
 
 
 
 
-
+    }
+    public static int linearSearch(int[] array,int number){
+        int iterations = 0;
+        for (int j : array) {
+            iterations++;
+            if (j == number) {
+                return iterations;
+            }
+        }
+        return array.length;
     }
 
     public static void insertionSort(int[] array){
